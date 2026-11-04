@@ -13,7 +13,7 @@ export async function login(formData: FormData) {
     if (data.session) await client.auth.signOut();
     redirect("/login?error=1");
   }
-  redirect("/strategy");
+  redirect("/invoice");
 }
 export async function logout() {
   const client = await supabaseServer();

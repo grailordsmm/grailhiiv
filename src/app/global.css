@@ -1634,10 +1634,12 @@ button:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 4px;
 }
-footer:focus {
+footer:focus,
+#work:focus {
   outline: none;
 }
-main {
+main,
+#work {
   scroll-margin-top: 88px;
 }
 @media (prefers-reduced-motion: reduce) {

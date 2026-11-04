@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Reveal, AnimatedHeading } from "@/components/animation";
+import { AnimatedHeading } from "@/components/animation";
 import { FeaturedWork } from "@/components/featured-work";
 
 export const metadata: Metadata = {
@@ -9,14 +9,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function Page() {
+export default function WorkPage() {
   return (
     <main id="main-content">
       <section className="px-4 pt-10 md:pt-14 pb-12 md:pb-25">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-6">
-          <div className="hidden md:block"></div>
+          <div className="hidden md:block" />
           <AnimatedHeading className="text-2xl leading-[1.05] md:leading-[68px] tracking-[-2.56px]">
-            Social media <span className="text-[#b2b2b2]">and</span> marketing projects, <span className="text-[#b2b2b2]">with</span> results.
+            Social media <span className="text-[#b2b2b2]">and</span> marketing
+            projects, <span className="text-[#b2b2b2]">with</span> results.
           </AnimatedHeading>
         </div>
       </section>

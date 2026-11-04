@@ -1,8 +1,8 @@
-import imageAsset0 from "../../../public/images/about-hero.webp";
-import imageAsset13 from "../../../public/images/icon.png";
-import imageAsset14 from "../../../public/images/greenleaf.png";
-import imageAsset15 from "../../../public/images/amplify.png";
-import imageAsset16 from "../../../public/images/graywolf.png";
+import aboutHero from "../../../public/images/about-hero.webp";
+import independentLogo from "../../../public/images/icon.png";
+import greenleafLogo from "../../../public/images/greenleaf.png";
+import amplifyLogo from "../../../public/images/amplify.png";
+import graywolfLogo from "../../../public/images/graywolf.png";
 import { imageSizes } from "@/lib/image-sizes";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -21,7 +21,7 @@ const workExperience = [
     company: "Independent",
     role: "Freelance and Partnerships",
     period: null,
-    logo: imageAsset13,
+    logo: independentLogo,
     alt: "Freelancer",
     delay: 0,
     paragraphs: [
@@ -32,7 +32,7 @@ const workExperience = [
     company: "Greenleaf Book Group",
     role: "Social Media Manager",
     period: "2022 — 2026",
-    logo: imageAsset14,
+    logo: greenleafLogo,
     alt: "Greenleaf Book Group",
     delay: 0.12,
     paragraphs: [
@@ -44,7 +44,7 @@ const workExperience = [
     company: "Amplify Publishing Group",
     role: "SEO Specialist",
     period: "2015 — 2022",
-    logo: imageAsset15,
+    logo: amplifyLogo,
     alt: "Amplify Publishing Group",
     delay: 0.24,
     paragraphs: [
@@ -56,7 +56,7 @@ const workExperience = [
     company: "Graywolf Press",
     role: "Lead Researcher",
     period: "2012 — 2015",
-    logo: imageAsset16,
+    logo: graywolfLogo,
     alt: "Graywolf Press",
     delay: 0.36,
     paragraphs: [
@@ -72,7 +72,9 @@ export default function AboutPage() {
         <div className="about-hero-grid max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-6 items-stretch">
           <div className="flex flex-col justify-center py-4 md:py-16 md:h-full">
             <AnimatedHeading className="home-hero-heading text-2xl md:max-w-[540px] leading-none tracking-[-2.5px]">
-              A little creative, <span className="text-[#b2b2b2]">a little technical,</span> always curious.
+              A little creative,{" "}
+              <span className="text-[#b2b2b2]">a little technical,</span> always
+              curious.
             </AnimatedHeading>
           </div>
           <Reveal immediate className="about-hero-image">
@@ -81,7 +83,7 @@ export default function AboutPage() {
                 alt="Portrait of Grailord Antonio"
                 className="object-cover"
                 sizes={imageSizes.aboutHero}
-                src={imageAsset0}
+                src={aboutHero}
                 quality={90}
                 fill
                 preload
@@ -166,7 +168,8 @@ export default function AboutPage() {
       <section className="px-4 py-10 md:py-12 border-t border-gray-100">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-6">
           <h2 className="section-heading md:sticky md:self-start md:top-4 text-lg leading-[36.4px] tracking-[-0.64px] text-black">
-            Client Testimonials</h2>
+            Client Testimonials
+          </h2>
           <Testimonials />
         </div>
       </section>

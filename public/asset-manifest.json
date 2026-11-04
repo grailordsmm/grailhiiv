@@ -36,6 +36,11 @@
     "source": "user-provided:about-hero.webp"
   },
   {
+    "local": "public/images/amplify.png",
+    "bytes": 6874,
+    "sha256": "c1db706b4d8f38e7d79781571612bc327f7363143665ec295df7f7080c737885"
+  },
+  {
     "local": "public/images/atlas/atlas-post-1.webp",
     "bytes": 111090,
     "sha256": "f564228ef093b2d157800c5c7794f1b0f7fdbbac62b9336fbbb42fbaca83e3ce"
@@ -221,6 +226,11 @@
     "sha256": "68f4af208a7a0cd8a326a532a44727014bafcfbcbee02ca39dc1f6cab7ca3d16"
   },
   {
+    "local": "public/images/greenleaf.png",
+    "bytes": 9657,
+    "sha256": "03a20d828dcf2768e9640f4331df72700a6d46c8b372b8d53fd3162acdf56109"
+  },
+  {
     "local": "public/images/home-hero-social-media.webp",
     "bytes": 199620,
     "sha256": "17547cbd67560059afc8d4c15230e64653b5d0bb7ae4517fa890347265162761"
@@ -369,5 +379,25 @@
     "local": "public/videos/melissa/melissa-video-2.mp4",
     "bytes": 2048040,
     "sha256": "a75311a54293ca5df0afe09e04663074ce1cc50ede6161d122372d4d2b70f1b6"
+  },
+  {
+    "local": "public/videos/testimonials/atlas-testi.mp4",
+    "bytes": 5042653,
+    "sha256": "166c3d9bfd4e54e31faacbb61fd990b0cd208414124cc40302883015c67fda48"
+  },
+  {
+    "local": "public/videos/testimonials/caroline-testi.mp4",
+    "bytes": 5673206,
+    "sha256": "c07f9b51b356402444dd2138a45b5498a0b1d80da78fca845bd32b9345825243"
+  },
+  {
+    "local": "public/videos/testimonials/daniel-testi.mp4",
+    "bytes": 6063745,
+    "sha256": "e99ef2b0b273ca61d09ee2f646945ea5a027bc5e2ad9dac69b761de173126f4f"
+  },
+  {
+    "local": "public/videos/testimonials/melissa-testi.mp4",
+    "bytes": 3477713,
+    "sha256": "10e70a8bd5bfa8643d0472f0e1b6f7dd5c7643b751102d46da30e2d11368f4d6"
   }
 ]

@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSmoothAnchor } from "@/components/smooth-anchor";
 
 const links = [
   { href: "/about", label: "About" },
@@ -27,7 +28,7 @@ export default function Header() {
   const reduced = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const previousY = useRef(0);
-  const frame = useRef(0);
+  const scrollToAnchor = useSmoothAnchor();
 
   useEffect(() => {
     const onScroll = () => {
@@ -37,57 +38,10 @@ export default function Header() {
       previousY.current = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    const stopScroll = () => cancelAnimationFrame(frame.current);
-    window.addEventListener("wheel", stopScroll, { passive: true });
-    window.addEventListener("touchstart", stopScroll, { passive: true });
-    window.addEventListener("keydown", stopScroll);
     return () => {
-      cancelAnimationFrame(frame.current);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", stopScroll);
-      window.removeEventListener("touchstart", stopScroll);
-      window.removeEventListener("keydown", stopScroll);
     };
   }, []);
-
-  useEffect(() => {
-    // A contact animation must not continue scrolling the next route.
-    return () => cancelAnimationFrame(frame.current);
-  }, [pathname]);
-
-  function contact(event: MouseEvent<HTMLAnchorElement>, href: string) {
-    if (href !== "#contact") return;
-    if (
-      event.button !== 0 ||
-      event.ctrlKey ||
-      event.metaKey ||
-      event.shiftKey ||
-      event.altKey
-    )
-      return;
-    const target = document.getElementById("contact");
-    if (!target) return;
-    event.preventDefault();
-    cancelAnimationFrame(frame.current);
-    if (window.location.hash !== "#contact") {
-      window.history.pushState(window.history.state, "", "#contact");
-    }
-    target.focus({ preventScroll: true });
-    const startY = window.scrollY;
-    const distance = target.getBoundingClientRect().top;
-    if (reduced) {
-      window.scrollTo(0, startY + distance);
-      return;
-    }
-    let start: number | undefined;
-    const step = (time: number) => {
-      start ??= time;
-      const progress = Math.min((time - start) / 900, 1);
-      window.scrollTo(0, startY + distance * (1 - (1 - progress) ** 3));
-      if (progress < 1) frame.current = requestAnimationFrame(step);
-    };
-    frame.current = requestAnimationFrame(step);
-  }
 
   const nav = (
     <nav aria-label="Main navigation" className="flex gap-4 md:gap-5 shrink-0">
@@ -102,7 +56,7 @@ export default function Header() {
                 ? "location"
                 : undefined
           }
-          onClick={(event) => contact(event, href)}
+          onClick={(event) => scrollToAnchor(event, href)}
           className={`transition-colors text-sm md:text-md ${pathname === href || (href === "/work" && pathname.startsWith("/work/")) ? "text-[#111111]" : "text-gray-400 hover:text-[#111111]"}`}
         >
           {label}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh GrailHiiv news feeds
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Adjust the user, environment file, and script path for the VPS deployment.
+User=grailhiiv
+EnvironmentFile=/etc/grailhiiv/news-refresh.env
+ExecStart=/usr/bin/env node /home/grailhiiv/portfolio/scripts/refresh-news.mjs
+TimeoutStartSec=65

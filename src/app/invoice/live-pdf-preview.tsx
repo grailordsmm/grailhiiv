@@ -178,9 +178,7 @@ export default function LivePdfPreview({ draft }: { draft: Draft }) {
       <div className="live-pdf-pages">
         {error ? (
           <p>Preview unavailable. Use Generate Invoice to view the PDF.</p>
-        ) : pages.length === 0 ? (
-          <p>Preparing preview…</p>
-        ) : (
+        ) : pages.length > 0 ? (
           <div className="live-pdf-page">
             <PdfPage url={pages[currentPage]} />
             <button
@@ -209,7 +207,7 @@ export default function LivePdfPreview({ draft }: { draft: Draft }) {
               />
             )}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

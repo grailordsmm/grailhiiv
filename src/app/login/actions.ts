@@ -4,16 +4,17 @@ import { ADMIN_EMAIL } from "@/lib/supabase/config";
 import { supabaseServer } from "@/lib/supabase/server";
 
 export async function login(formData: FormData) {
+  const destination = formData.get("next") === "invoice" ? "invoice" : "account";
   const email = String(formData.get("email") || "").trim().toLowerCase();
   const password = String(formData.get("password") || "");
-  if (email !== ADMIN_EMAIL || !password) redirect("/login?error=1");
+  if (email !== ADMIN_EMAIL || !password) redirect(`/login?error=1&next=${destination}`);
   const client = await supabaseServer();
   const { data, error } = await client.auth.signInWithPassword({ email, password });
   if (error || !data.user?.email_confirmed_at) {
     if (data.session) await client.auth.signOut();
-    redirect("/login?error=1");
+    redirect(`/login?error=1&next=${destination}`);
   }
-  redirect("/invoice");
+  redirect(`/${destination}`);
 }
 export async function logout() {
   const client = await supabaseServer();

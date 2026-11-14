@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import PdfDialog from "./pdf-dialog";
 import InvoiceHistory from "./invoice-history";
 import { useInvoiceHistory } from "./use-invoice-history";
@@ -71,8 +72,14 @@ export default function InvoiceWorkspace({ ownerId }: { ownerId: string }) {
   const [reviewRequested, setReviewRequested] = useState(false);
   const [addedMessage, setAddedMessage] = useState("");
   const [ready, setReady] = useState(false);
-  const { history, addHistory, deleteHistory } = useInvoiceHistory(ownerId, setMessage);
-  const { preview, setPreview, generating, makePdf } = useInvoicePdf(addHistory, setMessage);
+  const { history, addHistory, deleteHistory } = useInvoiceHistory(
+    ownerId,
+    setMessage,
+  );
+  const { preview, setPreview, generating, makePdf } = useInvoicePdf(
+    addHistory,
+    setMessage,
+  );
   useEffect(() => {
     const now = new Date();
     const date = `${String(now.getDate()).padStart(2, "0")}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getFullYear()).slice(-2)}`;
@@ -84,8 +91,7 @@ export default function InvoiceWorkspace({ ownerId }: { ownerId: string }) {
     setDraft({ ...blank(), issued, due: dueAfter14Days(issued) });
     setReady(true);
   }, []);
-  if (!draft || !ready)
-    return <main className="invoice-page">Loading invoice workspace…</main>;
+  if (!draft || !ready) return <main className="invoice-page" aria-busy="true" />;
   const update = (patch: Partial<Draft>) => setDraft({ ...draft, ...patch });
   const updateLine = (id: string, patch: Partial<Line>) =>
     update({
@@ -171,6 +177,7 @@ export default function InvoiceWorkspace({ ownerId }: { ownerId: string }) {
           className="invoice-workspace-nav"
           aria-label="Workspace navigation"
         >
+          <Link href="/account">Account</Link>
           <button
             type="button"
             aria-current={view === "invoice" ? "page" : undefined}
@@ -745,7 +752,12 @@ export default function InvoiceWorkspace({ ownerId }: { ownerId: string }) {
                   </div>
                 </section>
               </div>
-              <InvoicePreview draft={draft} hasPaymentErrors={hasPaymentErrors} generating={generating} requestPdf={requestPdf} />
+              <InvoicePreview
+                draft={draft}
+                hasPaymentErrors={hasPaymentErrors}
+                generating={generating}
+                requestPdf={requestPdf}
+              />
             </div>
             <div className="invoice-mobile-bar">
               <a href="#live-preview">View preview</a>
@@ -759,7 +771,14 @@ export default function InvoiceWorkspace({ ownerId }: { ownerId: string }) {
             </div>
           </>
         )}
-        {view === "history" && <InvoiceHistory history={history} generating={generating} makePdf={makePdf} deleteHistory={deleteHistory} />}
+        {view === "history" && (
+          <InvoiceHistory
+            history={history}
+            generating={generating}
+            makePdf={makePdf}
+            deleteHistory={deleteHistory}
+          />
+        )}
       </div>
     </main>
   );

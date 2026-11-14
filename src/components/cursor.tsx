@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 export default function Cursor({ primary = true }: { primary?: boolean }) {
   const pathname = usePathname();
-  const nativeCursor = ["/invoice", "/login"].some(
+  const nativeCursor = ["/invoice", "/login", "/account", "/news"].some(
     (route) => pathname === route || pathname?.startsWith(`${route}/`),
   );
   const x = useMotionValue(-200);

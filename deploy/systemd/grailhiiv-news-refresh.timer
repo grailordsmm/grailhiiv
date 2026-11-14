@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh GrailHiiv news feeds every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,30:00
+Persistent=true
+Unit=grailhiiv-news-refresh.service
+
+[Install]
+WantedBy=timers.target

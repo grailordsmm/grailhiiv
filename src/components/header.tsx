@@ -11,6 +11,7 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/news", label: "News" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -44,7 +45,7 @@ export default function Header() {
   }, []);
 
   const nav = (
-    <nav aria-label="Main navigation" className="flex gap-4 md:gap-5 shrink-0">
+    <nav aria-label="Main navigation" className="flex flex-wrap gap-4 md:gap-5">
       {links.map(({ href, label }) => (
         <Link
           key={href}
